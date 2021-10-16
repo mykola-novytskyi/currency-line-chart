@@ -1,0 +1,41 @@
+{
+	"implicitDependencies": {
+		"package.json": {
+			"dependencies": "*",
+			"devDependencies": "*"
+		},
+		".eslintrc.json": "*"
+	},
+	"affected": {
+		"defaultBase": "master"
+	},
+	"npmScope": "bp",
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/workspace/tasks-runners/default",
+			"options": {
+				"cacheableOperations": ["build", "lint"]
+			}
+		}
+	},
+	"projects": {
+		"currency-data-access": {
+			"tags": []
+		},
+		"currency-feature-chat": {
+			"tags": ["scope:task-currency", "type:feature"]
+		},
+		"currency-shell": {
+			"tags": ["scope:task-currency", "type:shell"]
+		},
+		"currency-ui": {
+			"tags": ["scope:task-currency", "type:ui"]
+		},
+		"shared-ui": {
+			"tags": ["scope:shared", "type:ui"]
+		},
+		"task": {
+			"tags": ["scope:bp-app", "type:app"]
+		}
+	}
+}

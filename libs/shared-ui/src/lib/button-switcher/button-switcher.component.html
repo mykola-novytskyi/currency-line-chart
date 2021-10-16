@@ -1,0 +1,5 @@
+<button (click)="onSelect(button.id)"
+		*ngFor="let button of buttons"
+		[class.selected]="selectedId === button.id"
+		class="cursor-pointer"
+>{{ button.name }}</button>

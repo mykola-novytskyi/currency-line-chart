@@ -1,0 +1,205 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"cli": {
+		"defaultCollection": "@nrwl/angular",
+		"warnings": {
+			"typescriptMismatch": false,
+			"versionMismatch": false
+		}
+	},
+	"defaultProject": "task",
+	"schematics": {
+		"@nrwl/angular": {
+			"application": {
+				"linter": "eslint"
+			},
+			"library": {
+				"linter": "eslint"
+			},
+			"storybook-configuration": {
+				"linter": "eslint"
+			}
+		},
+		"@nrwl/angular:application": {
+			"style": "scss",
+			"linter": "eslint",
+			"unitTestRunner": "none",
+			"e2eTestRunner": "none"
+		},
+		"@nrwl/angular:library": {
+			"style": "scss",
+			"linter": "eslint",
+			"unitTestRunner": "none"
+		},
+		"@nrwl/angular:component": {
+			"style": "scss"
+		}
+	},
+	"projects": {
+		"currency": {
+			"projectType": "library",
+			"root": "libs/currency",
+			"sourceRoot": "libs/currency/src",
+			"prefix": "bp",
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": ["libs/currency/src/**/*.ts", "libs/currency/src/**/*.html"]
+					}
+				}
+			}
+		},
+		"currency-data-access": {
+			"projectType": "library",
+			"root": "libs/currency/data-access",
+			"sourceRoot": "libs/currency/data-access/src",
+			"prefix": "bp",
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/currency/data-access/src/**/*.ts",
+							"libs/currency/data-access/src/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"currency-feature-chat": {
+			"projectType": "library",
+			"root": "libs/currency/feature-chat",
+			"sourceRoot": "libs/currency/feature-chat/src",
+			"prefix": "bp",
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/currency/feature-chat/src/**/*.ts",
+							"libs/currency/feature-chat/src/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"currency-shell": {
+			"projectType": "library",
+			"root": "libs/currency/shell",
+			"sourceRoot": "libs/currency/shell/src",
+			"prefix": "bp",
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": ["libs/currency/shell/src/**/*.ts", "libs/currency/shell/src/**/*.html"]
+					}
+				}
+			}
+		},
+		"currency-ui": {
+			"projectType": "library",
+			"root": "libs/currency/ui",
+			"sourceRoot": "libs/currency/ui/src",
+			"prefix": "bp",
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": ["libs/currency/ui/src/**/*.ts", "libs/currency/ui/src/**/*.html"]
+					}
+				}
+			}
+		},
+		"shared-ui": {
+			"projectType": "library",
+			"root": "libs/shared-ui",
+			"sourceRoot": "libs/shared-ui/src",
+			"prefix": "bp",
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": ["libs/shared-ui/src/**/*.ts", "libs/shared-ui/src/**/*.html"]
+					}
+				}
+			}
+		},
+		"task": {
+			"projectType": "application",
+			"root": "apps/task",
+			"sourceRoot": "apps/task/src",
+			"prefix": "bp",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/apps/task",
+						"index": "apps/task/src/index.html",
+						"main": "apps/task/src/main.ts",
+						"polyfills": "apps/task/src/polyfills.ts",
+						"tsConfig": "apps/task/tsconfig.app.json",
+						"aot": true,
+						"assets": ["apps/task/src/favicon.ico", "apps/task/src/assets"],
+						"styles": ["apps/task/src/styles.scss"],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "apps/task/src/environments/environment.ts",
+									"with": "apps/task/src/environments/environment.production.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"namedChunks": false,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb",
+									"maximumError": "10kb"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "task:build"
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "task:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "task:build"
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": ["apps/task/src/**/*.ts", "apps/task/src/**/*.html"]
+					}
+				}
+			}
+		}
+	}
+}

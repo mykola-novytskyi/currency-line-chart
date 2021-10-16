@@ -1,0 +1,6 @@
+<bp-button-switcher (choose)="onChoose($event)"
+					[buttons]="buttons"
+					[selectedId]="cryptoCurrencyFacade.currentCryptoCurrencyCode$ | async"
+></bp-button-switcher>
+<div class="current-price">{{ cryptoCurrencyFacade.currentCryptoCurrencyCode$ | async }}</div>
+<bp-line-chart [data]="cryptoCurrencyFacade.currencyPrices$ | async"></bp-line-chart>
