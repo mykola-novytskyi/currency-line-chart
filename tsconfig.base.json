@@ -6,7 +6,7 @@
 			"@bp/currency/feature-chat": ["libs/currency/feature-chat/src/index.ts"],
 			"@bp/currency/shell": ["libs/currency/shell/src/index.ts"],
 			"@bp/currency/ui": ["libs/currency/ui/src/index.ts"],
-			"@bp/shared-ui": ["libs/shared-ui/src/index.ts"],
+			"@bp/shared-ui": ["libs/shared-ui/src/index.ts"]
 		},
 		"baseUrl": ".",
 		"rootDir": ".",
