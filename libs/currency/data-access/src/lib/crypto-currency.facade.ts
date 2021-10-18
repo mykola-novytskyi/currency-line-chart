@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, Observable, share, switchMap, take, tap } from 'rxjs';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 
 import { CryptoCurrencyRepository } from './crypto-currency.repository';
@@ -11,7 +11,7 @@ import { CurrencyPrice } from './currency-price.interface';
 })
 export class CryptoCurrencyFacade {
 	currentCryptoCurrencyCode$: Observable<CryptoCurrencyCode>;
-	currencyPrices$: Observable<CurrencyPrice[]> | undefined;
+	currencyPrices$: Observable<CurrencyPrice[]>;
 
 	private maxAmountSubject = new BehaviorSubject<number>(1000);
 	private cryptoCurrencyCodeSubject = new BehaviorSubject<CryptoCurrencyCode>('BTC');
@@ -22,6 +22,7 @@ export class CryptoCurrencyFacade {
 			.pipe(
 				tap(currency => this.turnOnRealtimeCryptoCurrencyPrices(currency)),
 				switchMap(currency => this.cryptoCurrencyRepository.getCurrencies(currency, this.maxAmountSubject.value)),
+				share()
 			);
 	}
 

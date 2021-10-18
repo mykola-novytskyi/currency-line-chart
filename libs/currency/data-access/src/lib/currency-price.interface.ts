@@ -1,4 +1,4 @@
 export interface CurrencyPrice {
 	price: number;
-	timestamp: string;
+	timestamp: number;
 }

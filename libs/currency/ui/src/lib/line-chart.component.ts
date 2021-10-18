@@ -108,14 +108,11 @@ export class LineChartComponent implements OnInit, OnChanges, OnDestroy, AfterVi
 	}
 
 	private drawYAxis(): void {
-		// @ts-ignore
 		this.yScale = d3.scaleLinear()
 			// @ts-ignore
 			.domain([d3.max(this.data, d => d.price) + 1, d3.min(this.data, d => d.price) - 1])
 			.range([0, this.height - 2 * this.margin])
-			// ;
 		const yAxis = d3.axisLeft(this.yScale).tickFormat((d) => d3.format(",")(d) + " $" );
-		// this.yAxis?.call(d3.axisLeft(this.yScale));
 		this.yAxis?.call(yAxis);
 	}
 
